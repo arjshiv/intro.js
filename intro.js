@@ -412,6 +412,11 @@
 
     //set the step to zero
     this._currentStep = undefined;
+
+    //Close the window for Desktop Help 
+    if (WebHelp.onClose){
+        WebHelp.onClose();
+    }
   }
 
   /**
@@ -873,6 +878,13 @@
       progressLayer.appendChild(progressBar);
 
       buttonsLayer.className = 'introjs-tooltipbuttons';
+
+      //If the call is from Desktop Help , name the buttonslayer classname differently
+      // To handle the tooltip CSS according to the Desktop Help 
+      if(WebHelp.showDesktopTooltip){
+        buttonsLayer.className = 'introjs-desktoptooltipbuttons';
+      }
+      
       if (this._options.showButtons === false) {
         buttonsLayer.style.display = 'none';
       }
